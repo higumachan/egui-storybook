@@ -1,0 +1,16 @@
+[package]
+name = "egui-storybook"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+egui = "0.26.2"
+quote = "1.0.35"
+proc-macro2 = "1.0.78"
+tempdir = "0.3.7"
+askama = "0.12.1"
+
+[[escaper]]
+extensions = ["rs"]

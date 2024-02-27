@@ -1,0 +1,19 @@
+use egui::color_picker::{color_picker_color32, Alpha};
+use egui::{Color32, Slider, Widget};
+
+#[derive(Default)]
+struct App {
+}
+
+fn main() -> eframe::Result<()> {
+    env_logger::init(); // Log to stderr (if you run with `RUST_LOG=debug`).
+
+    let options = eframe::NativeOptions {
+        viewport: egui::ViewportBuilder::default().with_inner_size([320.0, 240.0]),
+        ..Default::default()
+    };
+    let mut app = App::default();
+    eframe::run_simple_native("{{ name }}", options, move |ctx, _frame| {
+        {{ main_code }}
+    })
+}
