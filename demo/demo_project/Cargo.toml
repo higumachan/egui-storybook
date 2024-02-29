@@ -1,5 +1,5 @@
 [package]
-name = "egui_storybook"
+name = "demo_project"
 version = "0.1.0"
 edition = "2021"
 
@@ -8,12 +8,6 @@ edition = "2021"
 [dependencies]
 egui = "0.26.2"
 eframe = "0.26.2"
-quote = "1.0.35"
-proc-macro2 = "1.0.78"
-tempdir = "0.3.7"
-askama = "0.12.1"
-env_logger = "0.11.2"
-anyhow = "1.0.80"
 
-[[escaper]]
-extensions = ["rs"]
+[dev-dependencies]
+egui_storybook = { path = "../../" }
