@@ -1,5 +1,6 @@
 use egui::color_picker::{color_picker_color32, Alpha};
 use egui::{Color32, Slider, Widget};
+use egui_extras::install_image_loaders;
 
 #[derive(Default)]
 struct App {
@@ -13,7 +14,9 @@ fn main() -> eframe::Result<()> {
         ..Default::default()
     };
     let mut app = App::default();
+
     eframe::run_simple_native("{{ name }}", options, move |ctx, _frame| {
+        install_image_loaders(&ctx);
         {{ main_code }}
     })
 }

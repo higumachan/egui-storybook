@@ -11,7 +11,6 @@ fn main() {
                     ui.label(format!("Hello, world!"));
                 });
             },
-            vec![],
         ))
         .add_story(Story::new(
             "button_with_context_menu",
@@ -20,7 +19,6 @@ fn main() {
                     demo_project::button_with_context_menu(ui);
                 });
             },
-            vec![],
         ))
         .build();
 

@@ -19,7 +19,20 @@ impl StoryRunner {
     pub fn run(&mut self, target_name: &str) -> anyhow::Result<()> {
         let workspace_dir = Path::new("target").join("egui_storybook");
         let crate_dir = workspace_dir.join("crates").join(&self.story.name);
+        let assets_dir = crate_dir.join("assets");
         std::fs::create_dir_all(&crate_dir).unwrap();
+
+        if !self.story.asset_files.is_empty() {
+            std::fs::create_dir_all(&assets_dir).unwrap();
+            for asset_file in &self.story.asset_files {
+                std::fs::copy(
+                    asset_file,
+                    &assets_dir.join(asset_file.file_name().unwrap()),
+                )
+                .unwrap();
+            }
+        }
+
         let cargo_toml = CargoToml {
             name: self.story.name.to_string(),
             target_crate_name: target_name.to_string(),

@@ -1,6 +1,6 @@
 use proc_macro2::TokenStream;
 pub use quote::quote;
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 use std::sync::Arc;
 
 pub struct StoryBookBuilder {
@@ -28,19 +28,31 @@ pub struct StoryBook {
     pub stories: Vec<Arc<Story>>,
 }
 
+#[derive(Default)]
 pub struct Story {
     pub name: String,
     pub body: TokenStream,
     pub dependent_files: Vec<PathBuf>,
+    pub asset_files: Vec<PathBuf>,
 }
 
 impl Story {
-    pub fn new(name: impl ToString, body: TokenStream, dependent_files: Vec<PathBuf>) -> Self {
+    pub fn new(name: impl ToString, body: TokenStream) -> Self {
         Self {
             name: name.to_string(),
             body,
-            dependent_files,
+            ..Default::default()
         }
+    }
+
+    pub fn add_dependent_file(mut self, path: PathBuf) -> Self {
+        self.dependent_files.push(path);
+        self
+    }
+
+    pub fn add_asset_file(mut self, path: PathBuf) -> Self {
+        self.asset_files.push(path);
+        self
     }
 }
 
